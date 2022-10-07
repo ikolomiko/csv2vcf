@@ -21,3 +21,9 @@ class Member:
         name = "OYT" + platform + l[1].strip() + " " + l[2].strip()
         telno = l[7].strip().replace(" ", "")
         return cls(name, telno)
+
+    def __repr__(self) -> str:
+        return f'"{self.name}","{self.telno}"\n'
+
+    def __str__(self) -> str:
+        return self.__repr__()
