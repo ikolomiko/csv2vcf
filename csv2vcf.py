@@ -27,7 +27,7 @@ def convert_to_vcard(input_file, single_output, input_file_format):
     if single_output :
         with open( input_file, 'r' ) as source_file:
             reader = csv.reader( source_file )
-            single_vcf = open('csv2vcf/all_contacts.vcf', 'w')
+            single_vcf = open('all_contacts.vcf', 'w')
             i = 0
             for row in reader:
 
