@@ -15,7 +15,9 @@ class Member:
             platform = "-W "
         elif "telegram" in platform:
             platform = "-T "
+        else:
+            platform = "-N "
 
         name = "OYT" + platform + l[1].strip() + " " + l[2].strip()
-        telno = l[7].strip()
+        telno = l[7].strip().replace(" ", "")
         return cls(name, telno)
