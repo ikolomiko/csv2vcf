@@ -5,25 +5,37 @@ from dataclasses import dataclass
 class Member:
     name: str
     telno: str
+    email: str
+    note: str
 
     @classmethod
     def parse_list(cls, l: list[str]):
-        platform = l[8].lower()
-        if "signal" in platform:
-            platform = "-S "
-        elif "whatsapp" in platform:
-            platform = "-W "
-        elif "telegram" in platform:
-            platform = "-T "
-        else:
-            platform = "-N "
+        [firstName,lastName,mobileNumber,platform,email,studentID,department,degree] = l
 
-        name = "OYT" + platform + l[1].strip() + " " + l[2].strip()
-        telno = l[7].strip().replace(" ", "")
-        return cls(name, telno)
+        platform = platform.lower().strip()
+        if "signal" in platform:
+            platform = "S "
+        elif "whatsapp" in platform:
+            platform = "W "
+        elif "telegram" in platform:
+            platform = "T "
+        else:
+            platform = "N "
+
+        note = f"{studentID} {department} {degree}"
+
+        name = "OYT23" + platform + firstName.strip() + " " + lastName.strip()
+
+        telno = mobileNumber.replace(" ", "")
+        if telno.startswith('5'):
+            telno = '+90' + telno
+        elif telno.startswith('0'):
+            telno = '+9' + telno
+
+        return cls(name, telno, email, note)
 
     def __repr__(self) -> str:
-        return f'"{self.name}","{self.telno}"\n'
+        return f'"{self.name}","{self.telno}","{self.email}","{self.note}"\n'
 
     def __str__(self) -> str:
         return self.__repr__()
