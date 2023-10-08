@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 import sys
+import csv
 from member import Member
 from csv2vcf import convert_to_vcard
 
@@ -19,8 +20,8 @@ def main() -> None:
 
     members: list[Member]
     with open(path_input, 'r') as file:
-        members = [Member.parse_list(line.strip().split(','))
-                   for line in file.readlines()]
+        reader = csv.reader(file)
+        members = [Member.parse_list(line) for line in reader]
 
     with open(path_output, 'w') as file:
         for member in members:
