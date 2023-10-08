@@ -9,7 +9,7 @@ from csv2vcf import convert_to_vcard
 def main() -> None:
     # Input file must be a csv file formatted in the style produced by formie
     path_input = sys.argv[1]
-    path_output = "out.csv"
+    path_output = "2023-processed-first97.csv"
 
     if not path_input:
         print("usage: python3 converter.py <input csv file>")
@@ -27,7 +27,7 @@ def main() -> None:
         for member in members:
             file.write(str(member))
 
-    convert_to_vcard("out.csv", single_output=True, input_file_format={"name":1, "tel":2})
+    convert_to_vcard(path_output, single_output=True, input_file_format={"name":1, "tel":2, "email":3, "note": 4})
 
     
 
